@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace BreakoutClone
 {
-    public partial class Form1 : Form
+    public partial class BreakoutForm : Form
     {
-        public Form1()
+        public BreakoutForm()
         {
             InitializeComponent();
         }
