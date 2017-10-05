@@ -37,7 +37,7 @@
             // 
             this.picPaddle.BackColor = System.Drawing.Color.Transparent;
             this.picPaddle.Image = ((System.Drawing.Image)(resources.GetObject("picPaddle.Image")));
-            this.picPaddle.Location = new System.Drawing.Point(340, 515);
+            this.picPaddle.Location = new System.Drawing.Point(584, 517);
             this.picPaddle.Name = "picPaddle";
             this.picPaddle.Size = new System.Drawing.Size(116, 12);
             this.picPaddle.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -49,13 +49,17 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(784, 600);
             this.Controls.Add(this.picPaddle);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "BreakoutForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Breakout";
+            this.Load += new System.EventHandler(this.BreakoutForm_Load);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.BreakoutForm_MouseMove);
             ((System.ComponentModel.ISupportInitialize)(this.picPaddle)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
