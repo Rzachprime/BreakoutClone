@@ -29,17 +29,32 @@ namespace BreakoutClone
             }
             picPaddle.Left = newXPos;
         }
+        private void MoveBall(int newXPos, int newYPos)
+        {
+        
+            picBall.Left = newXPos;
+            picBall.Top = newYPos;
+        }
 
         private void BreakoutForm_Load(object sender, EventArgs e)
         {
             // center the game paddle on screen at game start
 
             MovePaddle((ClientRectangle.Width - picPaddle.Width) / 2);
+
+            //Center ball on the screen at game start
+            MoveBall((ClientRectangle.Width - picBall.Width) / 2, 250);
         }
 
         private void BreakoutForm_MouseMove(object sender, MouseEventArgs e)
         {
             MovePaddle(e.X);
+            MoveBall(e.X, e.Y);
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
