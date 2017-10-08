@@ -97,5 +97,18 @@ namespace BreakoutClone
         {
 
         }
+
+        private void BreakoutForm_Paint(object sender, PaintEventArgs e)
+        {
+            Graphics g = e.Graphics;
+
+            int xpos = 100;
+            foreach (Image img in imageList1.Images)
+            {
+                g.DrawImage(img, xpos, 100);
+                xpos += img.Width;
+            }
+        }
+
     }
 }

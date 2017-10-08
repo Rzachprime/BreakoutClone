@@ -28,10 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BreakoutForm));
             this.picPaddle = new System.Windows.Forms.PictureBox();
             this.picBall = new System.Windows.Forms.PictureBox();
             this.lblGameOver = new System.Windows.Forms.Label();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.picPaddle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBall)).BeginInit();
             this.SuspendLayout();
@@ -73,6 +75,20 @@
             this.lblGameOver.Visible = false;
             this.lblGameOver.Click += new System.EventHandler(this.label1_Click);
             // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "stone_block.png");
+            this.imageList1.Images.SetKeyName(1, "blue_block.png");
+            this.imageList1.Images.SetKeyName(2, "red_block.png");
+            this.imageList1.Images.SetKeyName(3, "yellow_block.png");
+            this.imageList1.Images.SetKeyName(4, "green_block.png");
+            this.imageList1.Images.SetKeyName(5, "violet_block.png");
+            this.imageList1.Images.SetKeyName(6, "skyblue_block.png");
+            this.imageList1.Images.SetKeyName(7, "pink_block.png");
+            this.imageList1.Images.SetKeyName(8, "brown_block.png");
+            // 
             // BreakoutForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -91,6 +107,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Breakout";
             this.Load += new System.EventHandler(this.BreakoutForm_Load);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.BreakoutForm_Paint);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.BreakoutForm_MouseMove);
             ((System.ComponentModel.ISupportInitialize)(this.picPaddle)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBall)).EndInit();
@@ -104,6 +121,7 @@
         private System.Windows.Forms.PictureBox picPaddle;
         private System.Windows.Forms.PictureBox picBall;
         private System.Windows.Forms.Label lblGameOver;
+        private System.Windows.Forms.ImageList imageList1;
     }
 }
 
