@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BreakoutForm));
             this.picPaddle = new System.Windows.Forms.PictureBox();
             this.picBall = new System.Windows.Forms.PictureBox();
+            this.lblGameOver = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picPaddle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBall)).BeginInit();
             this.SuspendLayout();
@@ -58,6 +59,20 @@
             this.picBall.TabStop = false;
             this.picBall.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
+            // lblGameOver
+            // 
+            this.lblGameOver.AutoSize = true;
+            this.lblGameOver.BackColor = System.Drawing.Color.Transparent;
+            this.lblGameOver.Font = new System.Drawing.Font("Algerian", 42F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGameOver.ForeColor = System.Drawing.Color.Red;
+            this.lblGameOver.Location = new System.Drawing.Point(196, 122);
+            this.lblGameOver.Name = "lblGameOver";
+            this.lblGameOver.Size = new System.Drawing.Size(347, 63);
+            this.lblGameOver.TabIndex = 2;
+            this.lblGameOver.Text = "Game Over";
+            this.lblGameOver.Visible = false;
+            this.lblGameOver.Click += new System.EventHandler(this.label1_Click);
+            // 
             // BreakoutForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -66,6 +81,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(784, 600);
+            this.Controls.Add(this.lblGameOver);
             this.Controls.Add(this.picBall);
             this.Controls.Add(this.picPaddle);
             this.DoubleBuffered = true;
@@ -87,6 +103,7 @@
 
         private System.Windows.Forms.PictureBox picPaddle;
         private System.Windows.Forms.PictureBox picBall;
+        private System.Windows.Forms.Label lblGameOver;
     }
 }
 

@@ -62,8 +62,24 @@ namespace BreakoutClone
             if (pt.X < 0 || pt.X > ClientRectangle.Width - picBall.Width)
                 ballDX = -ballDX;
 
-            if (pt.Y < 0 || pt.Y > ClientRectangle.Height - picBall.Height)
+            if (pt.Y < 0)
                 ballDY = -ballDY;
+
+            if(pt.Y > ClientRectangle.Height)
+            {
+                //gameover text
+                lblGameOver.Visible = true;
+                // disable game timer
+                gameTimer.Enabled = false;
+            }
+
+            // collision detection for game paddle
+            if (picBall.Bounds.IntersectsWith(picPaddle.Bounds))
+            {
+                ballDY = -ballDY;
+               // Hardcore option
+               // ballSpeed = ballSpeed + 1;
+            }
 
         }
 
@@ -73,6 +89,11 @@ namespace BreakoutClone
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
         {
 
         }
