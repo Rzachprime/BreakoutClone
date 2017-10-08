@@ -12,6 +12,12 @@ namespace BreakoutClone
 {
     public partial class BreakoutForm : Form
     {
+        Timer gameTimer = new Timer();
+
+        int ballSpeed = 5;
+        int ballDX = 1;
+        int ballDY = 1;
+
         public BreakoutForm()
         {
             InitializeComponent();
@@ -29,13 +35,7 @@ namespace BreakoutClone
             }
             picPaddle.Left = newXPos;
         }
-        private void MoveBall(int newXPos, int newYPos)
-        {
         
-            picBall.Left = newXPos;
-            picBall.Top = newYPos;
-        }
-
         private void BreakoutForm_Load(object sender, EventArgs e)
         {
             // center the game paddle on screen at game start
@@ -43,13 +43,33 @@ namespace BreakoutClone
             MovePaddle((ClientRectangle.Width - picPaddle.Width) / 2);
 
             //Center ball on the screen at game start
-            MoveBall((ClientRectangle.Width - picBall.Width) / 2, 250);
+            picBall.Left = (ClientRectangle.Width - picPaddle.Width) / 2;
+            picBall.Top = 250;
+
+            gameTimer.Interval = 16;
+            gameTimer.Tick += GameTimer_Tick;
+            gameTimer.Enabled = true;
+        }
+
+        private void GameTimer_Tick(object sender, EventArgs e)
+        {
+            Point pt = picBall.Location;
+
+            pt.X += ballSpeed * ballDX;
+            pt.Y += ballSpeed * ballDY;
+            picBall.Location = pt;
+
+            if (pt.X < 0 || pt.X > ClientRectangle.Width - picBall.Width)
+                ballDX = -ballDX;
+
+            if (pt.Y < 0 || pt.Y > ClientRectangle.Height - picBall.Height)
+                ballDY = -ballDY;
+
         }
 
         private void BreakoutForm_MouseMove(object sender, MouseEventArgs e)
         {
             MovePaddle(e.X);
-            MoveBall(e.X, e.Y);
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
