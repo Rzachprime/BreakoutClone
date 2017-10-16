@@ -35,10 +35,12 @@
             this.lblGameOver = new System.Windows.Forms.Label();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.gameMenu = new System.Windows.Forms.Panel();
-            this.btnNewGame = new System.Windows.Forms.Button();
-            this.btnResume = new System.Windows.Forms.Button();
-            this.btnQuit = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnQuit = new System.Windows.Forms.Button();
+            this.btnResume = new System.Windows.Forms.Button();
+            this.btnNewGame = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblScore = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picPaddle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBall)).BeginInit();
             this.gameMenu.SuspendLayout();
@@ -72,7 +74,7 @@
             this.lblGameOver.BackColor = System.Drawing.Color.Transparent;
             this.lblGameOver.Font = new System.Drawing.Font("Algerian", 42F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGameOver.ForeColor = System.Drawing.Color.Red;
-            this.lblGameOver.Location = new System.Drawing.Point(222, 9);
+            this.lblGameOver.Location = new System.Drawing.Point(222, 41);
             this.lblGameOver.Name = "lblGameOver";
             this.lblGameOver.Size = new System.Drawing.Size(347, 63);
             this.lblGameOver.TabIndex = 2;
@@ -107,19 +109,30 @@
             this.gameMenu.Name = "gameMenu";
             this.gameMenu.Size = new System.Drawing.Size(400, 300);
             this.gameMenu.TabIndex = 3;
-            this.gameMenu.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
-            // btnNewGame
+            // label1
             // 
-            this.btnNewGame.BackColor = System.Drawing.Color.Gold;
-            this.btnNewGame.Font = new System.Drawing.Font("Algerian", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNewGame.ForeColor = System.Drawing.Color.White;
-            this.btnNewGame.Location = new System.Drawing.Point(47, 61);
-            this.btnNewGame.Name = "btnNewGame";
-            this.btnNewGame.Size = new System.Drawing.Size(300, 35);
-            this.btnNewGame.TabIndex = 0;
-            this.btnNewGame.Text = "New Game";
-            this.btnNewGame.UseVisualStyleBackColor = false;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Algerian", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(28, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(327, 30);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "BREAKOUT GAME MENU";
+            // 
+            // btnQuit
+            // 
+            this.btnQuit.BackColor = System.Drawing.Color.Gold;
+            this.btnQuit.Font = new System.Drawing.Font("Algerian", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnQuit.ForeColor = System.Drawing.Color.White;
+            this.btnQuit.Location = new System.Drawing.Point(50, 196);
+            this.btnQuit.Name = "btnQuit";
+            this.btnQuit.Size = new System.Drawing.Size(300, 35);
+            this.btnQuit.TabIndex = 2;
+            this.btnQuit.Text = "Quit";
+            this.btnQuit.UseVisualStyleBackColor = false;
+            this.btnQuit.Click += new System.EventHandler(this.btnQuit_Click);
             // 
             // btnResume
             // 
@@ -133,30 +146,44 @@
             this.btnResume.TabIndex = 1;
             this.btnResume.Text = "Resume";
             this.btnResume.UseVisualStyleBackColor = false;
+            this.btnResume.Click += new System.EventHandler(this.btnResume_Click);
             // 
-            // btnQuit
+            // btnNewGame
             // 
-            this.btnQuit.BackColor = System.Drawing.Color.Gold;
-            this.btnQuit.Font = new System.Drawing.Font("Algerian", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnQuit.ForeColor = System.Drawing.Color.White;
-            this.btnQuit.Location = new System.Drawing.Point(50, 196);
-            this.btnQuit.Name = "btnQuit";
-            this.btnQuit.Size = new System.Drawing.Size(300, 35);
-            this.btnQuit.TabIndex = 2;
-            this.btnQuit.Text = "Quit";
-            this.btnQuit.UseVisualStyleBackColor = false;
+            this.btnNewGame.BackColor = System.Drawing.Color.Gold;
+            this.btnNewGame.Font = new System.Drawing.Font("Algerian", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNewGame.ForeColor = System.Drawing.Color.White;
+            this.btnNewGame.Location = new System.Drawing.Point(47, 61);
+            this.btnNewGame.Name = "btnNewGame";
+            this.btnNewGame.Size = new System.Drawing.Size(300, 35);
+            this.btnNewGame.TabIndex = 0;
+            this.btnNewGame.Text = "New Game";
+            this.btnNewGame.UseVisualStyleBackColor = false;
+            this.btnNewGame.Click += new System.EventHandler(this.btnNewGame_Click);
             // 
-            // label1
+            // label2
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Algerian", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(28, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(327, 30);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "BREAKOUT GAME MENU";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Algerian", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(1, 9);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(96, 26);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "SCORE:";
+            // 
+            // lblScore
+            // 
+            this.lblScore.AutoSize = true;
+            this.lblScore.BackColor = System.Drawing.Color.Transparent;
+            this.lblScore.Font = new System.Drawing.Font("Algerian", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblScore.ForeColor = System.Drawing.Color.White;
+            this.lblScore.Location = new System.Drawing.Point(103, 9);
+            this.lblScore.Name = "lblScore";
+            this.lblScore.Size = new System.Drawing.Size(87, 26);
+            this.lblScore.TabIndex = 5;
+            this.lblScore.Text = "00000";
             // 
             // BreakoutForm
             // 
@@ -166,6 +193,8 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(784, 600);
+            this.Controls.Add(this.lblScore);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.gameMenu);
             this.Controls.Add(this.lblGameOver);
             this.Controls.Add(this.picBall);
@@ -201,6 +230,8 @@
         private System.Windows.Forms.Button btnQuit;
         private System.Windows.Forms.Button btnResume;
         private System.Windows.Forms.Button btnNewGame;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblScore;
     }
 }
 

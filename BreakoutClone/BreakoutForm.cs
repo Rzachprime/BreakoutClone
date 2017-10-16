@@ -27,7 +27,9 @@ namespace BreakoutClone
 
         Random rand = new Random();
 
+        //game variables
         bool gamePaused = true;
+        int score = 0;
 
         public BreakoutForm()
         {
@@ -44,6 +46,7 @@ namespace BreakoutClone
             ShowMenu(Pause);
             gameTimer.Enabled = !Pause;
             gamePaused = Pause;
+            btnResume.Enabled = Pause;
         }
 
         private void ShowMenu(bool Show = true)
@@ -53,6 +56,9 @@ namespace BreakoutClone
         }
         private int MakeBlocks(int rows, int cols)
         {
+            blockRows = rows;
+            blockCols = cols;
+
             Blocks = new Image[rows, cols];
 
             for (int i = 0; i < rows; ++i)
@@ -60,6 +66,7 @@ namespace BreakoutClone
                 {
                     int index = rand.Next(0, imageList1.Images.Count);
                     Blocks[i, j] = imageList1.Images[index];
+                    Blocks[i, j].Tag = index;// sets tag to index value
                 }
             return rows * cols;
         }
@@ -90,12 +97,15 @@ namespace BreakoutClone
             //set up game timer
             gameTimer.Interval = 16;
             gameTimer.Tick += GameTimer_Tick;
-            gameTimer.Enabled = true;
+            
 
             //prepare the blocks for use
-            blockRows = 5;
-            blockCols= imageList1.Images.Count;
-            blockCount = MakeBlocks(blockRows, blockCols);
+           
+            blockCount = MakeBlocks(rand.Next(3,9), imageList1.Images.Count);
+
+            //start game paused
+            PauseGame(true);
+            btnResume.Enabled = false;
         }
 
         private void GameTimer_Tick(object sender, EventArgs e)
@@ -155,7 +165,11 @@ namespace BreakoutClone
                 {
                     if (Blocks[row, col] != null)
                     {
-
+                         if((int)Blocks[row,col].Tag == 0)
+                        {
+                            //we hit a stone block, increase ball speed
+                            ballSpeed += 1;
+                        }
                         Blocks[row, col] = null;
 
                         Rectangle rc = new Rectangle(xpos + col * imgWidth, ypos + row * imgHeight, imgWidth, imgHeight);
@@ -167,14 +181,27 @@ namespace BreakoutClone
             }
             if (blockHitCount > 0)
                 {
+                // at least one block is hit
                 ballDY = -ballDY;
+
+                score += blockHitCount;
+                lblScore.Text = score.ToString("D5");
+                blockCount -= blockHitCount; //Decrease the remaining blocks
+                if(blockCount <= 0)
+                {
+                    //game level is complete
                 }
+            }
             
 
         }
 
         private void BreakoutForm_MouseMove(object sender, MouseEventArgs e)
         {
+            // anti cheating condition. If game is paused you can't move the paddle with the mouse.
+            if (IsPaused())
+                return;
+
             MovePaddle(e.X);
         }
 
@@ -203,36 +230,64 @@ namespace BreakoutClone
             }
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void BreakoutForm_KeyDown(object sender, KeyEventArgs e)
         {
             switch(e.KeyCode)
             {
                 case Keys.Escape:
-                    //pause 
-                    PauseGame(!IsPaused());
+                    //pause game
+                    ShowMenu(!gameMenu.Visible);
+                    if(!IsPaused())
+                         PauseGame();
                     break;
                 case Keys.Q:
                     //quit game
                     Close();
                     break;
                 case Keys.Left:
-                    MovePaddle(picPaddle.Left - paddleSpeed);
+                    if (!IsPaused())
+                        MovePaddle(picPaddle.Left - paddleSpeed);
                     break;
                 case Keys.Right:
-                    MovePaddle(picPaddle.Left + paddleSpeed);
+                    if (!IsPaused())
+                        MovePaddle(picPaddle.Left + paddleSpeed);
                     break;
 
             }
+        }
+
+        private void btnNewGame_Click(object sender, EventArgs e)
+        {
+            score = 0;
+            lblScore.Text = score.ToString("D5");
+
+            // Make new gameblocks
+            // center the game paddle on screen at game start
+
+            MovePaddle((ClientRectangle.Width - picPaddle.Width) / 2);
+
+            //Center ball on the screen at game start
+            picBall.Left = (ClientRectangle.Width - picPaddle.Width) / 2;
+            picBall.Top = 250;
+
+            //prepare the blocks for use
+
+            blockCount = MakeBlocks(rand.Next(3, 9), imageList1.Images.Count);
+
+            //start game paused
+            PauseGame(false);
+            
+
+        }
+
+        private void btnResume_Click(object sender, EventArgs e)
+        {
+            PauseGame(false);
+        }
+
+        private void btnQuit_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }
