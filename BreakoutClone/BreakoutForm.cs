@@ -273,7 +273,18 @@ namespace BreakoutClone
             //prepare the blocks for use
 
             blockCount = MakeBlocks(rand.Next(3, 9), imageList1.Images.Count);
+            //countdown
+            lblCountdown.Text = "3";
+            lblCountdown.Visible = true;
+            ShowMenu(false);
 
+            for (int i = 3; i >=0; --i)
+            {
+                lblCountdown.Text = i.ToString();
+                Application.DoEvents();
+                System.Threading.Thread.Sleep(1000);
+            }
+            lblCountdown.Visible = false;
             //start game paused
             PauseGame(false);
             
